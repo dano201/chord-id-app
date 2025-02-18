@@ -1,5 +1,6 @@
 import librosa
 import numpy as np
+import tensorflow as tf
 
 def process(file):
     y, sr = librosa.load(file, sr=16000)
@@ -13,5 +14,8 @@ def process(file):
     cqt_db = librosa.amplitude_to_db(np.abs(cqt), ref=np.max)
 
     cqt_db = (cqt_db - np.min(cqt_db)) / (np.max(cqt_db) - np.min(cqt_db))
+
+    cqt_db = tf.expand_dims(cqt_db, axis=0)
+    cqt_db = tf.expand_dims(cqt_db, axis=-1)
 
     return cqt_db
