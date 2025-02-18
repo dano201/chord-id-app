@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import notes, { getIndexes } from './helper'
 import './App.css'
 
 function App() {
@@ -24,10 +25,12 @@ function App() {
         body: formData,
       });
 
-      console.log(response);
-
       const data = await response.json();
-      setResponse(JSON.stringify(data.predictions));
+
+      const noteIds = getIndexes(data.predictions[0]);
+      const noteNames = noteIds.map(i => notes[i]);
+      setResponse("Notes predicted: " + noteNames.join(", "));
+
   } catch (error) {
     console.error("Error uploading file: ", error);
     setResponse("Cannot process file.");
