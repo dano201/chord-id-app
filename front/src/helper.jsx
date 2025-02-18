@@ -12,4 +12,65 @@ export const getIndexes = (arr, n = 0.3) => {
     .map(item => item.i);
 }
 
+export const getNames = (arr) => {
+    const notes = ["C", "C#", "D", "D#", "E", "F", 
+    "F#", "G", "G#", "A", "A#", "B"]
+    const sliced = [...new Set(arr.map(note => note.slice(0, -1)))];
+
+    const maj = [0, 4, 7];
+    const min = [0, 3, 7];
+
+    let names = []
+    for (let i = 0; i < sliced.length; i++) {
+        
+        const root = sliced[i];
+        let intervals = [];
+        
+        for (let j = 0; j < sliced.length; j++) {
+            let note = sliced[j];
+            let interval = (notes.indexOf(note) - notes.indexOf(root) + 12) % 12;
+            intervals.push(interval);
+        }
+        intervals = intervals.sort((a, b) => a - b);
+        console.log(intervals);
+
+        let quality = JSON.stringify(intervals.slice(0, 3))
+        
+
+        if (quality === JSON.stringify(maj)) {
+            let name = root;
+
+            if (intervals.includes(11)) {
+                name += "maj7";
+            }
+
+            else if (intervals.includes(10)) {
+                name += "7";
+            }
+
+            else if (intervals.includes(9)) {
+                name += "6";
+            }
+
+            names.push(name);
+        }
+
+        if (quality === JSON.stringify(min)) {
+            let name = root + "m";
+
+            if (intervals.includes(10)) {
+                name += "7";
+            }
+
+            else if (intervals.includes(8)) {
+                name += "♭6";
+            }
+
+            names.push(name);
+        }
+    }
+    console.log(names);
+    return names;
+}
+
 export default notes;

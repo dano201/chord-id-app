@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import notes, { getIndexes } from './helper'
+import { getNames } from './helper'
 import './App.css'
 
 function App() {
   const [wav, setWav] = useState(null);
   const [response, setResponse] = useState("")
+  const [chord, setChord] = useState("")
 
   const handleWav = (event) => {
     setWav(event.target.files[0]);
@@ -29,6 +31,8 @@ function App() {
 
       const noteIds = getIndexes(data.predictions[0]);
       const noteNames = noteIds.map(i => notes[i]);
+      const chordNames = getNames(noteNames);
+      setChord("Chord name: " + chordNames)
       setResponse("Notes predicted: " + noteNames.join(", "));
 
   } catch (error) {
@@ -45,6 +49,7 @@ function App() {
         Upload
       </button>
       <p>{response}</p>
+      <p>{chord}</p>
     </div>
   );
 }
