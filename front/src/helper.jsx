@@ -5,11 +5,13 @@ const notes = [
     "C5", "C#5", "D5", "D#5", "E5"
   ];
 
-export const getIndexes = (arr, n = 0.3) => {
+export const getIndexes = (arr) => {
+    let n = Math.max(...arr) * 0.4;
     return [...arr]
     .map((val, i) => ({val, i}))
     .filter(item => item.val > n)
-    .map(item => item.i);
+    .map(item => item.i)
+    .slice(0, 6);
 }
 
 export const getNames = (arr) => {
