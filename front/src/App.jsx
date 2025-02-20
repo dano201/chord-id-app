@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import notes, { getIndexes } from './helper'
 import { getNames } from './helper'
+import { findFrettings } from './fretHelper'
 import './App.css'
 
 function App() {
   const [wav, setWav] = useState(null);
   const [response, setResponse] = useState("")
   const [chord, setChord] = useState("")
+  const [frettings, setFrettings] = useState([]);
 
   const handleWav = (event) => {
     setWav(event.target.files[0]);
@@ -32,6 +34,9 @@ function App() {
       const noteIds = getIndexes(data.predictions[0]);
       const noteNames = noteIds.map(i => notes[i]);
       const chordNames = getNames(noteNames);
+      const frets = findFrettings(noteNames);
+      setFrettings(frets);
+      console.log(frets);
       setChord("Chord name: " + chordNames)
       setResponse("Notes predicted: " + noteNames.join(", "));
 
@@ -50,6 +55,13 @@ function App() {
       </button>
       <p>{response}</p>
       <p>{chord}</p>
+      <p>
+      {frettings.map((f, i) => (
+        <li key={i}>
+          {f.map(({string, fret}) => "String " + string + ", Fret " + fret).join(" | ")}
+        </li>
+      ))}
+      </p>
     </div>
   );
 }
