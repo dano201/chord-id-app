@@ -2,6 +2,7 @@ import { useState } from 'react'
 import notes, { getIndexes } from './helper'
 import { getNames } from './helper'
 import { findFrettings } from './fretHelper'
+import Fretboard from './Fretboard'
 import './App.css'
 
 function App() {
@@ -61,6 +62,14 @@ function App() {
           {f.map(({string, fret}) => "String " + string + ", Fret " + fret).join(" | ")}
         </li>
       ))}
+      </p>
+      <p>
+      {frettings.map((fretting, index) => (
+                <div key={index} style={{ marginBottom: "20px" }}>
+                    <h3>Fretting {index + 1}</h3>
+                    <Fretboard fretting={fretting} />
+                </div>
+            ))}  
       </p>
     </div>
   );
