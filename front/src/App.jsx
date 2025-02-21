@@ -3,13 +3,14 @@ import notes, { getIndexes } from './helper'
 import { getNames } from './helper'
 import { findFrettings } from './fretHelper'
 import Fretboard from './Fretboard'
+import FretboardSlider from './fretboardSlider'
 import './App.css'
 
 function App() {
   const [wav, setWav] = useState(null);
   const [response, setResponse] = useState("")
   const [chord, setChord] = useState("")
-  const [frettings, setFrettings] = useState([]);
+  const [frettings, setFrettings] = useState([[], []]);
 
   const handleWav = (event) => {
     setWav(event.target.files[0]);
@@ -33,12 +34,15 @@ function App() {
       const data = await response.json();
 
       const noteIds = getIndexes(data.predictions[0]);
+      
       const noteNames = noteIds.map(i => notes[i]);
       const chordNames = getNames(noteNames);
       const frets = findFrettings(noteNames);
-      setFrettings(frets);
-      setChord("Chord name: " + chordNames)
-      setResponse("Notes predicted: " + noteNames.join(", "));
+
+      if (frets.length > 0) { setFrettings(frets); }
+      else { setFrettings([[], []]); }
+      setChord(chordNames)
+      setResponse(noteNames.join(", "));
 
   } catch (error) {
     console.error("Error uploading file: ", error);
@@ -55,14 +59,8 @@ function App() {
       </button>
       <p>{response}</p>
       <p>{chord}</p>
-      <p>
-      {frettings.map((fretting, index) => (
-                <div key={index} style={{ marginBottom: "20px" }}>
-                    <h3>Fretting {index + 1}</h3>
-                    <Fretboard fretting={fretting} />
-                </div>
-            ))}  
-      </p>
+      <FretboardSlider fretboards={frettings.map((fretting, i) => (
+        <Fretboard fretting={fretting}/>))} frettings={frettings} />
     </div>
   );
 }

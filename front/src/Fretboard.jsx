@@ -12,7 +12,7 @@ const Fretboard = ({ fretting }) => {
         border: "3px solid black",
     };
 
-    const stringThickness = ["3.2px", "2.8px", "2.4px", "2.2px", "1.8px", "1.5px"];
+    const stringThickness = ["3.5px", "3.2px", "2.8px", "2.5px", "2.2px", "2px"];
 
     return (
         <div>
@@ -37,7 +37,7 @@ const Fretboard = ({ fretting }) => {
                 {[...Array(numStrings * (numFrets))].map((_, index) => {
                     const row = Math.floor(index / (numFrets));
                     const col = index % (numFrets);
-
+                    
                     const isPlayed = fretting.some(note => note.string === row-1 && note.fret === col);
                     const isOpen = fretting.some(note => note.string === row-1 && note.fret === 0);
 
