@@ -37,7 +37,6 @@ function App() {
       const chordNames = getNames(noteNames);
       const frets = findFrettings(noteNames);
       setFrettings(frets);
-      console.log(frets);
       setChord("Chord name: " + chordNames)
       setResponse("Notes predicted: " + noteNames.join(", "));
 
@@ -56,13 +55,6 @@ function App() {
       </button>
       <p>{response}</p>
       <p>{chord}</p>
-      <p>
-      {frettings.map((f, i) => (
-        <li key={i}>
-          {f.map(({string, fret}) => "String " + string + ", Fret " + fret).join(" | ")}
-        </li>
-      ))}
-      </p>
       <p>
       {frettings.map((fretting, index) => (
                 <div key={index} style={{ marginBottom: "20px" }}>
