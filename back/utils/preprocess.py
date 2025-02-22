@@ -4,7 +4,7 @@ import tensorflow as tf
 
 def process(file):
     y, sr = librosa.load(file, sr=16000)
-
+    
     onset = librosa.onset.onset_detect(y=y, sr=sr, backtrack=True)
     
     start = 0 if len(onset) == 0 else max(onset[0] * 512 - int(sr * 0.5), 0)

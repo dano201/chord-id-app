@@ -9,17 +9,19 @@ model = tf.keras.models.load_model("models/model.h5")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173", "http://192.168.1.109:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
     audio = await file.read()
 
     audio_buffer = io.BytesIO(audio)
+
     cqt = process(audio_buffer)
 
     prediction = model.predict(cqt)

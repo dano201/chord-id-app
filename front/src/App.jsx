@@ -4,7 +4,9 @@ import { getNames } from './helper'
 import { findFrettings } from './fretHelper'
 import Fretboard from './Fretboard'
 import FretboardSlider from './fretboardSlider'
+import MicInput from './MicInput'
 import './App.css'
+
 
 function App() {
   const [wav, setWav] = useState(null);
@@ -12,9 +14,16 @@ function App() {
   const [chords, setChords] = useState("")
   const [displayChord, setDisplayChord] = useState("");
   const [frettings, setFrettings] = useState([[], []]);
+  const [recordedAudio, setRecordedAudio] = useState(null);
 
   const handleWav = (event) => {
-    setWav(event.target.files[0]);
+    if (event instanceof Blob) {
+      console.log(event.size);
+      setWav(event);
+    } else {
+      console.log(event.target.files[0].size);
+      setWav(event.target.files[0]);
+    }
   }
 
   const uploadWav = async () => {
@@ -71,7 +80,10 @@ function App() {
         paddingLeft: "20%"}}>
 
         <div>
-          <input type="file" accept="audio/wav" onChange={handleWav} />
+          <MicInput handleWav={handleWav} />
+          <p> or </p>
+          <p style = {{paddingLeft: "20%"}}><input type="file" accept="audio/wav" onChange={handleWav} /></p>
+          <p></p>
           <button onClick={uploadWav} 
             disabled={!wav}
             style={{backgroundColor: "lightBlue", color: "#060b1a"}}>
