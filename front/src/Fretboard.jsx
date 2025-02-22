@@ -3,13 +3,16 @@ import React from "react";
 const Fretboard = ({ fretting }) => {
     const numFrets = 15, numStrings = 7;
     const stringNames = ["", "E", "A", "D", "G", "B", "E"];
-     
+    
+    const isBlank = (fretting.length === 0);
+
     const boardStyle = {
         display: "grid",
         gridTemplateColumns: `repeat(${numFrets}, 60px)`,
         gridTemplateRows: `repeat(${numStrings}, 30px)`,
         position: "relative",
-        border: "3px solid black",
+        opacity: isBlank ? "0.25" : "1",
+        border: "3px solid lightblue",
     };
 
     const stringThickness = ["3.5px", "3.2px", "2.8px", "2.5px", "2.2px", "2px"];
@@ -26,7 +29,8 @@ const Fretboard = ({ fretting }) => {
                         alignItems: "center",
                         justifyContent: "center",
                         paddingBottom: "5px",
-                        fontWeight: "bold"
+                        fontWeight: "bold",
+                        opacity: isBlank ? "0.25" : "1",
                     }}>
                         {fret === 0 ? "" : fret}
                     </div>
@@ -44,8 +48,8 @@ const Fretboard = ({ fretting }) => {
                     const rowStyle = {
                         width: "60px",
                         height: "30px",
-                        borderBottom: col === 0 ? "none" : `${stringThickness[row]} solid black`,
-                        borderRight: col > 0 ? "2px solid black" : "4px solid black",
+                        borderBottom: col === 0 ? "none" : `${stringThickness[row]} solid lightblue`,
+                        borderRight: col > 0 ? "2px solid lightblue" : "4px solid lightblue",
                         position: "relative",
                         fontWeight: col === 0 ? "bold" : "normal",
                         bottom: col === 0 ? "0%" : "0%",
@@ -54,7 +58,7 @@ const Fretboard = ({ fretting }) => {
                     const frettedStyle = {
                         width: "18px",
                         height: "18px",
-                        backgroundColor: "black",
+                        backgroundColor: "lightblue",
                         borderRadius: "50%",
                         position: "relative",
                         left: "50%",
@@ -66,7 +70,7 @@ const Fretboard = ({ fretting }) => {
                         display: "inline-flex",
                         width: "22px",
                         height:"22px",
-                        border: "2.25px solid black",
+                        border: "2.25px solid lightblue",
                         borderRadius: "50%",
                         alignItems: "center",
                         justifyContent: "center",
@@ -75,7 +79,7 @@ const Fretboard = ({ fretting }) => {
                     }
 
                     const labelStyle = {
-                        display: "flex",
+                        display: "inline-flex",
                         alignItems: "center",
                         justifyContent: "center",
                         fontWeight: "bold",

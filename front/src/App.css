@@ -1,8 +1,10 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 20rem;
   text-align: center;
+  background-color: #060b1a;
+  color: lightblue;
 }
 
 .slick-slide {
@@ -19,4 +21,14 @@
 .slick-track {
   display: flex !important;
   justify-content: center !important;
+}
+
+.slick-dots li button:before {
+  color: lightblue !important;
+  opacity: 0.5 !important;
+}
+
+.slick-dots li.slick-active button:before {
+  color: lightblue !important;
+  opacity: 1 !important;
 }

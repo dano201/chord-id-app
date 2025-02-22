@@ -7,8 +7,9 @@ export default function FretboardSlider({ fretboards, frettings }) {
 
     const settings = {
         dots: !empty,
+        arrows: false,
         infinite: false,
-        speed: 0,
+        speed: 1000,
         slidesToShow: 1,
         slidesToScroll: 1,
         centerMode: false,
