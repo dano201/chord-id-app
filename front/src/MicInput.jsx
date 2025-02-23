@@ -1,23 +1,21 @@
 import { useState, useRef } from "react"
 import toWav from "audiobuffer-to-wav"
-import { FaMicrophone, FaMicrophoneSlash } from "react-icons/fa";
+import { FaMicrophone, FaMicrophoneSlash } from "react-icons/fa"
 
-async function convertToWav(blob) {
-    const arrayBuffer = await blob.arrayBuffer();
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const convertToWav = async (file) => {
+    const arrayBuffer = await file.arrayBuffer();
+    const context = new (window.AudioContext)();
+    const audioBuffer = await context.decodeAudioData(arrayBuffer);
+    const wavBuffer = toWav(audioBuffer);
     
-    const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-    
-    const wavArrayBuffer = toWav(audioBuffer);
-    
-    return new Blob([wavArrayBuffer], { type: "audio/wav" });
-  }
+    return new Blob([wavBuffer], { type: "audio/wav" });
+}
 
-export default function MicInput({ handleWav }) {
+const MicInput = ({ handleWav }) => {
     const [isRecording, setIsRecording] = useState(false);
     const mediaRecorderRef = useRef(null);
     const audio = useRef([]);
-    const [audioURL, setAudioURL] = useState(null);
+    const [playback, setPlayback] = useState(null);
 
     const startRecording = async () => {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -28,14 +26,13 @@ export default function MicInput({ handleWav }) {
         };
 
         mediaRecorder.onstop = async () => {
-            const waveform = new Blob(audio.current, { type: "audio/webm" });
+            const file = new Blob(audio.current);
             audio.current = [];
 
-            const wavBlob = await convertToWav(waveform);
-            const url = URL.createObjectURL(wavBlob);
-            setAudioURL(url);
+            const wav = await convertToWav(file);
+            setPlayback(URL.createObjectURL(wav));
 
-            if (handleWav) { handleWav(wavBlob); }
+            if (handleWav) { handleWav(wav); }
         }
 
         mediaRecorderRef.current = mediaRecorder;
@@ -57,7 +54,9 @@ export default function MicInput({ handleWav }) {
                     <FaMicrophone size={125}  color="#060b1a" />}
             </button>
             <p></p>
-            <audio controls src={audioURL} className="mt-4"/>
+            <audio controls src={playback} className="mt-4"/>
         </div>
     );
 }
+
+export default MicInput;
