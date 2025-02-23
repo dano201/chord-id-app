@@ -10,28 +10,17 @@ import './App.css'
 
 function App() {
   const [wav, setWav] = useState(null);
-  const [response, setResponse] = useState("")
+  const [predicted, setPredicted] = useState("")
   const [chords, setChords] = useState("")
-  const [displayChord, setDisplayChord] = useState("");
-  const [frettings, setFrettings] = useState([[], []]);
-  const [recordedAudio, setRecordedAudio] = useState(null);
+  const [displayChord, setDisplayChord] = useState("")
+  const [frettings, setFrettings] = useState([[], []])
 
   const handleWav = (event) => {
-    if (event instanceof Blob) {
-      console.log(event.size);
-      setWav(event);
-    } else {
-      console.log(event.target.files[0].size);
-      setWav(event.target.files[0]);
-    }
+    if (event instanceof Blob) { setWav(event); } 
+    else { setWav(event.target.files[0]); }
   }
 
   const uploadWav = async () => {
-    if (!wav) {
-      alert("Please select a file.")
-      return;
-    }
-
     const formData = new FormData();
     formData.append("file", wav)
 
@@ -40,32 +29,28 @@ function App() {
         method: "POST",
         body: formData,
       });
-
       const data = await response.json();
 
-      const noteIds = getIndexes(data.predictions[0]);
-      
-      const noteNames = noteIds.map(i => notes[i]);
+      const indexes = getIndexes(data.predictions[0]);
+      const noteNames = indexes.map(i => notes[i]);
+      setPredicted(noteNames.join(", "));
+
       const chordNames = getNames(noteNames);
-      const frets = findFrettings(noteNames);
-
-      if (frets.length > 0) { setFrettings(frets); }
-      else { setFrettings([[], []]); }
-
-      if (chordNames.length === 0) {
-        setDisplayChord("N/A");
-      } else { 
+      if (chordNames.length === 0) { setDisplayChord("N/A"); } 
+      else { 
         setDisplayChord(chordNames.sort((a, b) => a.length - b.length)[0]); 
         setChords(chordNames.slice(1).join(", "));
       }
 
-      setResponse(noteNames.join(", "));
+      const frets = findFrettings(noteNames);
+      if (frets.length > 0) { setFrettings(frets); }
+      else { setFrettings([[], []]); }
+
 
   } catch (error) {
     console.error("Error uploading file: ", error);
-    setResponse("Cannot process file.");
+    setPredicted("Cannot process file.");
   }
-
   };
 
   return (
@@ -108,7 +93,7 @@ function App() {
         </div>
         <div>
           <p style={{opacity: "0.5", borderTop: "2px solid lightblue", paddingTop: "5%"}}>NOTES PRESENT:</p>  
-          <h3 style = {{minHeight: "30px"}}>{response}</h3>    
+          <h3 style = {{minHeight: "30px"}}>{predicted}</h3>    
         </div>
       </div>
 
@@ -120,4 +105,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
