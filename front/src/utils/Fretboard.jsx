@@ -1,5 +1,3 @@
-import React from "react";
-
 const Fretboard = ({ fretting }) => {
     const numFrets = 15, numStrings = 7;
     const stringNames = ["", "E", "A", "D", "G", "B", "E"];

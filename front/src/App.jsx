@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import notes, { getIndexes } from './helper'
-import { getNames } from './helper'
-import { findFrettings } from './fretHelper'
-import Fretboard from './Fretboard'
-import FretboardSlider from './fretboardSlider'
-import MicInput from './MicInput'
+import notes, { getIndexes } from './utils/helper'
+import { getNames } from './utils/ChordNamer'
+import { findFrettings } from './utils/fretHelper'
+import Fretboard from './utils/Fretboard'
+import FretboardSlider from './utils/FretboardSlider'
+import MicInput from './utils/MicInput'
 import './App.css'
 
 

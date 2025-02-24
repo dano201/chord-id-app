@@ -1,16 +1,16 @@
-const notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+import { chromatic } from './helper'
 
 const strings = ["E2", "A2", "D3", "G3", "B3", "E4"];
 
 //---- CREATE FRETBOARD ----
 
 const createString = (openNote, numFrets) => {
-    let start = notes.indexOf(openNote.slice(0, -1)), octave = parseInt(openNote.slice(-1));
+    let start = chromatic.indexOf(openNote.slice(0, -1)), octave = parseInt(openNote.slice(-1));
     let string = {};
 
     for (let fret = 0; fret <= numFrets; fret++) {
         let pos = start + fret;
-        let note = notes[(pos) % 12], noteOctave = octave + Math.floor((pos) / 12);
+        let note = chromatic[(pos) % 12], noteOctave = octave + Math.floor((pos) / 12);
         string[note + noteOctave] = fret;
     }
 
