@@ -4,3 +4,4 @@ numpy
 tensorflow
 pytest
 python-multipart
+httpx
