@@ -1,4 +1,5 @@
 back/utils/__pycache__/
 back/__pycache__/
 back/.venv/
+back/tests/__pycache__/
 front/coverage
