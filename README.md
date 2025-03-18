@@ -1,5 +1,7 @@
 # Chord Identifier Prototype
 
+Please note that this project requires Python 3.9-3.12 due to use of TensorFlow: https://www.tensorflow.org/install/pip
+
 This project provides a prototype web application for real-time chord identification, through either microphone input or pre-recorded samples. The application utilises a CNN optimised for individual pitch recognition within chords.
 
 After uploading audio, the application will provide the raw notes played (accurate to the octave), possible chord names, as well as fretboard diagrams of feasible positions where the chord could be played.
