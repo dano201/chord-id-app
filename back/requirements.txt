@@ -2,3 +2,4 @@ fastapi
 librosa
 numpy
 tensorflow
+pytest
