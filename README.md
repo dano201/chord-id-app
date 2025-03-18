@@ -36,7 +36,7 @@ npm install
 
 Access `localhost:5173` to interact with the application. Microphone input can be recorded and played-back via the top-left button, or files can be manually uploaded with the button below - provided they are in WAV format.
 
-Chord names are display on the right-hand side, along with the raw notes played.
+Chord names are displayed on the right-hand side, along with the raw notes played.
 
 The fretboard diagram is displayed along the bottom; where applicable, multiple diagrams can be switched-between using the dots below.
 
