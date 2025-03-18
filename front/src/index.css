@@ -1,7 +1,12 @@
+@font-face {
+  font-family: 'Fallout';
+  src: url('./assets/monofonto%20rg.otf') format('opentype');
+  font-weight: 200;
+}
+
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: 'Fallout', system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
-    font-weight: 400;
   
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);

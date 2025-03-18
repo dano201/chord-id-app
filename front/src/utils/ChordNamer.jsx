@@ -20,12 +20,12 @@ const extensions = {
 
 //Extended conventions e.g., maj9 instead of maj7add9
 const jazzExtensions = [
-    { name: "maj13", required: ["maj7", "add9", "add13"] },
-    { name: "maj11", required: ["maj7", "add9", "add11"] },
-    { name: "maj9", required: ["maj7", "add9"] },
-    { name: "13", required: ["7", "add9", "add13"] },
-    { name: "11", required: ["7", "add9", "add11"] },
-    { name: "9", required: ["7", "add9"] }
+    { name: "maj13", required: [11, 2, 9] },
+    { name: "maj11", required: [11, 2, 5] },
+    { name: "maj9", required: [11, 2] },
+    { name: "13", required: [10, 2, 9] },
+    { name: "11", required: [10, 2, 5] },
+    { name: "9", required: [10, 2] }
 ]
 
 const getIntervals = (arr, root) => {

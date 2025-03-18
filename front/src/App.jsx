@@ -6,6 +6,7 @@ import Fretboard from './utils/Fretboard'
 import FretboardSlider from './utils/FretboardSlider'
 import MicInput from './utils/MicInput'
 import './App.css'
+import './index.css'
 
 
 function App() {

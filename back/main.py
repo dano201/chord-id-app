@@ -9,7 +9,7 @@ model = tf.keras.models.load_model("models/model.h5")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://192.168.1.109:5173"],
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -28,7 +28,3 @@ async def predict(file: UploadFile = File(...)):
 
     print(prediction.tolist())
     return {"predictions":prediction.tolist()}
-
-@app.get("/")
-async def home():
-    return {"message" : "Hello World"}
