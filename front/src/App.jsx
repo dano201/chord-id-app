@@ -57,51 +57,34 @@ function App() {
   return (
     <div>
       <h1>CHORD IDENTIFIER PROTOTYPE</h1>
-      <div style = {{ display: "flex", 
-        justifyContent: "space-between", 
-        alignItems: "center", 
-        paddingTop: "2%",
-        paddingBottom:"2%",
-        paddingRight: "20%",
-        paddingLeft: "20%"}}>
+      <div id = "overall">
 
         <div>
           <MicInput handleWav={handleWav} />
           <p> or </p>
-          <p style = {{paddingLeft: "20%"}}><input type="file" accept="audio/wav" onChange={handleWav} /></p>
+          <p id="choose-file"><input type="file" accept="audio/wav" onChange={handleWav} /></p>
           <p></p>
-          <button onClick={uploadWav} 
-            disabled={!wav}
-            style={{backgroundColor: "lightBlue", color: "#060b1a"}}>
+          <button id="upload-button" onClick={uploadWav} disabled={!wav}>
             UPLOAD
           </button>
         </div>
 
-      <div
-      style={{
-        width: "300px",
-        padding: "20px",
-        border: "2px solid lightblue",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        minHeight: "350px",
-      }}>
+      <div id="chord-info-box">
         <div>
-        <p style={{opacity: "0.5"}}>CHORD NAME:</p> 
+        <p id="chord-name-header">CHORD NAME:</p> 
           <div><h1>{displayChord}</h1></div>
-          <div style={{fontStyle: "italic"}}>{chords}</div>
+          <div>{chords}</div>
         </div>
         <div>
-          <p style={{opacity: "0.5", borderTop: "2px solid lightblue", paddingTop: "5%"}}>NOTES PRESENT:</p>  
-          <h3 style = {{minHeight: "30px"}}>{predicted}</h3>    
+          <p id="raw-notes-header">NOTES PRESENT:</p>  
+          <h3 id="raw-notes">{predicted}</h3>    
         </div>
       </div>
 
       </div>      
       <FretboardSlider 
         fretboards={frettings.map((fretting, i) => (
-        <Fretboard fretting={fretting}/>))} frettings={frettings} />
+        <Fretboard key ={i} fretting={fretting}/>))} frettings={frettings} />
     </div>
   );
 }

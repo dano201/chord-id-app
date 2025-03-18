@@ -1,3 +1,5 @@
+import './Fretboard.css'
+
 const Fretboard = ({ fretting }) => {
     const numFrets = 15, numStrings = 7;
     const stringNames = ["", "E", "A", "D", "G", "B", "E"];
@@ -5,12 +7,9 @@ const Fretboard = ({ fretting }) => {
     const isBlank = (fretting.length === 0);
 
     const boardStyle = {
-        display: "grid",
         gridTemplateColumns: `repeat(${numFrets}, 60px)`,
         gridTemplateRows: `repeat(${numStrings}, 30px)`,
-        position: "relative",
         opacity: isBlank ? "0.25" : "1",
-        border: "3px solid lightblue",
     };
 
     const stringThickness = ["3.5px", "3.2px", "2.8px", "2.5px", "2.2px", "2px"];
@@ -35,74 +34,38 @@ const Fretboard = ({ fretting }) => {
                 ))}
             </div>
 
-            <div style={boardStyle}>
-                {[...Array(numStrings * (numFrets))].map((_, index) => {
-                    const row = Math.floor(index / (numFrets));
-                    const col = index % (numFrets);
+            <div id="board" style={boardStyle}>
+                {[...Array(numStrings * (numFrets))].map((_, i) => {
+                    const row = Math.floor(i / (numFrets));
+                    const col = i % (numFrets);
                     
                     const isPlayed = fretting.some(note => note.string === row-1 && note.fret === col);
                     const isOpen = fretting.some(note => note.string === row-1 && note.fret === 0);
 
                     const rowStyle = {
-                        width: "60px",
-                        height: "30px",
                         borderBottom: col === 0 ? "none" : `${stringThickness[row]} solid lightblue`,
                         borderRight: col > 0 ? "2px solid lightblue" : "4px solid lightblue",
-                        position: "relative",
-                        fontWeight: col === 0 ? "bold" : "normal",
-                        bottom: col === 0 ? "0%" : "0%",
+                        fontWeight: col === 0 ? "bold" : "normal"
                     };
 
-                    const frettedStyle = {
-                        width: "18px",
-                        height: "18px",
-                        backgroundColor: "lightblue",
-                        borderRadius: "50%",
-                        position: "relative",
-                        left: "50%",
-                        top: "5%",
-                        transform: "translate(-50%, -50%)"
-                    }
-
-                    const openStyle = {
-                        display: "inline-flex",
-                        width: "22px",
-                        height:"22px",
-                        border: "2.25px solid lightblue",
-                        borderRadius: "50%",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        position: "relative",
-                        top: "-40%",
-                    }
-
-                    const labelStyle = {
-                        display: "inline-flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontWeight: "bold",
-                        position: "relative",
-                        top: "-40%",
-                    }
-
                     const stringLabel = isOpen ? (
-                        <div style={openStyle}> 
+                        <div id="open"> 
                             {stringNames[row]}
                         </div> 
-                    ) : ( <div style = {labelStyle}>
+                    ) : ( <div id="label">
                         {stringNames[row]}
                         </div>
                     ) 
                     
                     return (
-                        <div key={index} style={rowStyle}>
+                        <div id="row" key={i} style={rowStyle}>
 
                             {/* String names */}
                             {col === 0 ? stringLabel : null}
 
                             {/* Fretted notes */}
                             {isPlayed && !isOpen &&  (
-                                <div style={frettedStyle}/>
+                                <div id="fretted"/>
                             )}
                         </div>
                     );

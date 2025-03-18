@@ -8,6 +8,54 @@
   color: lightblue;
 }
 
+#overall {
+  display: flex !important;
+  justify-content: space-between !important; 
+  align-items: center !important;
+  padding-top: 2% !important;
+  padding-bottom: 2% !important;
+  padding-right: 20% !important;
+  padding-left: 20% !important;
+}
+
+#choose-file {
+  padding-left: 20%;
+}
+
+#upload-button {
+  background-color: lightBlue;
+  color: #060b1a;
+}
+
+#chord-info-box {
+  width: 300px;
+  padding: 20px;
+  border: 2px solid lightblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 350px;
+}
+
+#chord-name-header {
+  opacity: 0.5;
+}
+
+#raw-notes-header {
+  opacity: 0.5; 
+  border-top: 2px solid lightblue; 
+  padding-top: 5%;
+}
+
+#raw-notes {
+  min-height: 30px;
+}
+
+#mic-button {
+  background-color: lightblue;
+  border-radius: 30%;
+}
+
 .slick-slide {
   display: flex !important;
   justify-content: center !important;

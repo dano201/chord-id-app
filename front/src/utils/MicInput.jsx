@@ -47,9 +47,7 @@ const MicInput = ({ handleWav }) => {
 
     return (
         <div>
-            <button style={{backgroundColor: "lightblue", borderRadius: "30%"}}
-                onClick= {isRecording ? stopRecording : startRecording}
-            >
+            <button id="mic-button" onClick= {isRecording ? stopRecording : startRecording}>
                 { isRecording ? <FaMicrophoneSlash size={125} color="#060b1a"/> : 
                     <FaMicrophone size={125}  color="#060b1a" />}
             </button>

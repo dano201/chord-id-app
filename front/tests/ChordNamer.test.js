@@ -66,3 +66,15 @@ test('Add9 chord', () => {
 test('maj11 chord', () => {
     expect(getNames(['D2', 'F#2', 'A3', 'C#3', 'E4', 'G5'])).toContain('Dmaj11');
 })
+
+test('Dominant 7 sus chord', () => {
+    expect(getNames(['D2', 'E3', 'A3', 'C4'])).toContain('D7sus2');
+})
+
+test('Major 7 sharp 9 chord', () => {
+    expect(getNames(['D2', 'F#2', 'A3', 'F3', 'C#4'])).toContain('Dmaj7♯9');
+})
+
+test('Major 9 chord', () => {
+    expect(getNames(['D2', 'F#2', 'A3', 'E3', 'C#4'])).toContain('Dmaj9');
+})
