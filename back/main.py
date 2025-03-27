@@ -5,7 +5,7 @@ import tensorflow as tf
 import io
 
 app = FastAPI()
-model = tf.keras.models.load_model("models/model.h5")
+model = tf.keras.models.load_model("models/model.keras")
 
 app.add_middleware(
     CORSMiddleware,

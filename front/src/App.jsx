@@ -24,7 +24,7 @@ function App() {
   const uploadWav = async () => {
     const formData = new FormData();
     formData.append("file", wav)
-
+    
     try {
       const response = await fetch("http://127.0.0.1:8000/predict", {
         method: "POST",

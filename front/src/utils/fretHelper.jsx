@@ -32,7 +32,7 @@ export const createFretboard = (n) => {
 const isPlayable = (fretting) => {
     let frets = fretting.map(f => f.fret);
     let min = Math.min(...frets), max = Math.max(...frets);
-    return (max - min <= 5);
+    return (max - min < 5);
 }
 
 const getFret = (start, note, fretboard) => {

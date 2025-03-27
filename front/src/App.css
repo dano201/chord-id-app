@@ -4,8 +4,8 @@
   margin: 0 auto;
   padding: 20rem;
   text-align: center;
-  background-color: #060b1a;
-  color: lightblue;
+  background-color: #0f0f0f;
+  color: #bbd9ec;
 }
 
 #overall {
@@ -23,14 +23,14 @@
 }
 
 #upload-button {
-  background-color: lightBlue;
-  color: #060b1a;
+  background-color: #bbd9ec;
+  color: #0f0f0f;
 }
 
 #chord-info-box {
   width: 300px;
   padding: 20px;
-  border: 2px solid lightblue;
+  border: 2px solid #bbd9ec;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -43,7 +43,7 @@
 
 #raw-notes-header {
   opacity: 0.5; 
-  border-top: 2px solid lightblue; 
+  border-top: 2px solid #bbd9ec; 
   padding-top: 5%;
 }
 
@@ -52,7 +52,7 @@
 }
 
 #mic-button {
-  background-color: lightblue;
+  background-color: #bbd9ec;
   border-radius: 30%;
 }
 
@@ -73,16 +73,16 @@
 }
 
 .slick-dots li button:before {
-  color: lightblue !important;
+  color: #bbd9ec !important;
   opacity: 0.5 !important;
 }
 
 .slick-dots li.slick-active button:before {
-  color: lightblue !important;
+  color: #bbd9ec !important;
   opacity: 1 !important;
 }
 
 audio::-webkit-media-controls-panel {
-  background-color: rgb(161, 186, 195)!important;
+  background-color: #bbd9ec !important;
 }
 

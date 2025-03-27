@@ -43,8 +43,8 @@ const Fretboard = ({ fretting }) => {
                     const isOpen = fretting.some(note => note.string === row-1 && note.fret === 0);
 
                     const rowStyle = {
-                        borderBottom: col === 0 ? "none" : `${stringThickness[row]} solid lightblue`,
-                        borderRight: col > 0 ? "2px solid lightblue" : "4px solid lightblue",
+                        borderBottom: col === 0 ? "none" : `${stringThickness[row]} solid #bbd9ec`,
+                        borderRight: col > 0 ? "2px solid #bbd9ec" : "4px solid #bbd9ec",
                         fontWeight: col === 0 ? "bold" : "normal"
                     };
 
