@@ -8,7 +8,7 @@ export const notes = [
   ];
 
 export const getIndexes = (arr) => {
-    let n = Math.max(...arr) * 0.4;
+    let n = Math.max(...arr) * 0.44;
     return [...arr]
     .map((val, i) => ({val, i}))
     .filter(item => item.val > n)
